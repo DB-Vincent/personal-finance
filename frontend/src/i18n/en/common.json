@@ -1,0 +1,23 @@
+{
+  "app_name": "Personal Finance",
+  "login": "Log in",
+  "register": "Register",
+  "logout": "Log out",
+  "email": "Email",
+  "password": "Password",
+  "dashboard": "Dashboard",
+  "accounts": "Accounts",
+  "transactions": "Transactions",
+  "budgets": "Budgets",
+  "reports": "Reports",
+  "settings": "Settings",
+  "loading": "Loading...",
+  "error": "Something went wrong",
+  "save": "Save",
+  "cancel": "Cancel",
+  "no_account": "Don't have an account?",
+  "have_account": "Already have an account?",
+  "registration_disabled": "Registration is disabled. Contact your administrator.",
+  "invalid_credentials": "Invalid email or password.",
+  "email_exists": "This email is already registered."
+}

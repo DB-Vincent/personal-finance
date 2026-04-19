@@ -47,6 +47,37 @@ Each Go service follows: `handler → service → repository`. Services define r
 - CI: separate GitHub Actions workflow per service + frontend, lint → test → build → push to GHCR
 - Testing: critical paths only (auth, balances, budgets, transactions), integration tests with real Postgres
 
+## Build & Run Commands
+
+### Full stack
+```bash
+docker compose up --build        # build and start everything
+docker compose down -v           # stop and wipe volumes
+```
+
+### Backend (Go workspace)
+```bash
+go build ./services/auth/...     # build auth service
+go build ./services/gateway/...  # build gateway
+go run ./services/auth           # run auth locally (needs DATABASE_URL, JWT secrets)
+go run ./services/gateway        # run gateway locally (needs AUTH_SERVICE_URL, JWT secret)
+```
+
+### Frontend
+```bash
+cd frontend
+npm install
+npm run dev                      # dev server with API proxy to :8080
+npm run build                    # production build
+npx tsc -p tsconfig.app.json --noEmit  # type check
+```
+
+### Adding shadcn/ui components
+```bash
+cd frontend
+npx shadcn@latest add <component>
+```
+
 ## Repository
 
 - GitHub: DB-Vincent/personal-finance

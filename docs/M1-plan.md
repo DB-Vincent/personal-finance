@@ -193,7 +193,7 @@ Note: The users table migration includes `is_disabled` (default false) from the 
 - [ ] `routes/routes.go` + `main.go` — mount proxies, middleware stack, graceful shutdown
 
 ### Phase 5: Docker Compose
-- [ ] `services/auth/Dockerfile` — multi-stage (golang:1.24-alpine → alpine)
+- [ ] `services/auth/Dockerfile` — multi-stage (golang:1.25-alpine → alpine)
 - [ ] `services/gateway/Dockerfile` — same pattern
 - [ ] `docker-compose.yml` — postgres (with healthcheck), auth, gateway
 

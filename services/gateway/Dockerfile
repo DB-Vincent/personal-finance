@@ -7,6 +7,8 @@ COPY pkg/ pkg/
 COPY services/gateway/ services/gateway/
 COPY services/auth/go.mod services/auth/go.mod
 COPY services/auth/go.sum services/auth/go.sum
+COPY services/finance/go.mod services/finance/go.mod
+COPY services/finance/go.sum services/finance/go.sum
 
 RUN cd services/gateway && go build -o /gateway .
 

@@ -36,7 +36,9 @@ func RunMigrations(pool *pgxpool.Pool, migrations fs.FS, dbName string) error {
 
 	db := stdlib.OpenDBFromPool(pool)
 
-	driver, err := postgres.WithInstance(db, &postgres.Config{})
+	driver, err := postgres.WithInstance(db, &postgres.Config{
+		MigrationsTable: dbName + "_schema_migrations",
+	})
 	if err != nil {
 		return fmt.Errorf("create migration driver: %w", err)
 	}

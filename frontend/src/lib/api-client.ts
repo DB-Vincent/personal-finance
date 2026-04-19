@@ -76,5 +76,6 @@ export async function apiClient<T>(
     throw errorBody;
   }
 
+  if (res.status === 204) return undefined as T;
   return res.json();
 }

@@ -5,6 +5,8 @@ WORKDIR /build
 COPY go.work go.work
 COPY pkg/ pkg/
 COPY services/auth/ services/auth/
+COPY services/finance/go.mod services/finance/go.mod
+COPY services/finance/go.sum services/finance/go.sum
 COPY services/gateway/go.mod services/gateway/go.mod
 COPY services/gateway/go.sum services/gateway/go.sum
 

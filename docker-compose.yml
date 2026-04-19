@@ -33,6 +33,19 @@ services:
       postgres:
         condition: service_healthy
 
+  finance:
+    build:
+      context: .
+      dockerfile: services/finance/Dockerfile
+    ports:
+      - "8082:8082"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/personalfinance?sslmode=disable
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
   gateway:
     build:
       context: .
@@ -48,6 +61,7 @@ services:
       LOG_LEVEL: ${LOG_LEVEL:-info}
     depends_on:
       - auth
+      - finance
 
   frontend:
     build:

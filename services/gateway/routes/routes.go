@@ -31,7 +31,7 @@ func New(cfg Config) *chi.Mux {
 	})
 
 	authStripped := http.StripPrefix("/api/v1", cfg.AuthProxy)
-	financeStripped := http.StripPrefix("/api/v1", cfg.FinanceProxy)
+	financeStripped := http.StripPrefix("/api/v1/finance", cfg.FinanceProxy)
 
 	r.Route("/api/v1", func(r chi.Router) {
 		r.Group(func(r chi.Router) {

@@ -58,8 +58,10 @@ docker compose down -v           # stop and wipe volumes
 ### Backend (Go workspace)
 ```bash
 go build ./services/auth/...     # build auth service
+go build ./services/finance/...  # build finance service
 go build ./services/gateway/...  # build gateway
 go run ./services/auth           # run auth locally (needs DATABASE_URL, JWT secrets)
+go run ./services/finance        # run finance locally (needs DATABASE_URL)
 go run ./services/gateway        # run gateway locally (needs AUTH_SERVICE_URL, JWT secret)
 ```
 

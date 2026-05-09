@@ -4,6 +4,8 @@ import { useTransactions, useAccounts, useCategories, useDeleteTransaction } fro
 import { useAuth } from "@/hooks/use-auth";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Search } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -44,12 +46,15 @@ export function TransactionsPage() {
       <h1 className="text-2xl font-bold">{t("transactions")}</h1>
 
       <div className="flex flex-wrap gap-2">
-        <Input
-          placeholder={t("search")}
-          className="w-48"
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder={t("search")}
+            className="w-48 pl-9"
           value={filters.search || ""}
-          onChange={(e) => setFilters((f) => ({ ...f, search: e.target.value, page_token: undefined }))}
-        />
+            onChange={(e) => setFilters((f) => ({ ...f, search: e.target.value, page_token: undefined }))}
+          />
+        </div>
         <Select
           value={filters.account_id || "all"}
           onValueChange={(v) => {
@@ -104,19 +109,24 @@ export function TransactionsPage() {
         <Skeleton className="h-48" />
       ) : (
         <>
-          <TransactionList
-            transactions={data?.items || []}
-            currencySymbol={currencySymbol}
-            onSelect={(tx) => setSelected(tx)}
-          />
+          <Card className="py-0">
+            <CardContent className="p-0">
+              <TransactionList
+                transactions={data?.items || []}
+                currencySymbol={currencySymbol}
+                onSelect={(tx) => setSelected(tx)}
+              />
+            </CardContent>
+          </Card>
           {data?.total_size !== undefined && (
-            <p className="text-sm text-muted-foreground">
-              {data.items.length} of {data.total_size} {t("transactions").toLowerCase()}
+            <p className="text-sm text-muted-foreground mt-3">
+              {(data.items || []).length} of {data.total_size} {t("transactions").toLowerCase()}
             </p>
           )}
           {data?.next_page_token && (
             <Button
               variant="outline"
+              className="mt-3"
               onClick={() => setFilters((f) => ({ ...f, page_token: data.next_page_token }))}
             >
               {t("load_more")}

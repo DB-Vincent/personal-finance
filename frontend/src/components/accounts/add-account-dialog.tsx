@@ -106,7 +106,7 @@ export function AddAccountDialog({
               id="balance"
               type="number"
               step="0.01"
-              {...form.register("starting_balance")}
+              {...form.register("starting_balance", { valueAsNumber: true })}
             />
           </div>
 

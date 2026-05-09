@@ -128,9 +128,9 @@ export function AccountsPage() {
           ))}
 
           {accounts?.length === 0 && (
-            <div className="col-span-full text-center py-12 text-muted-foreground">
-              <Wallet className="h-12 w-12 mx-auto mb-4 opacity-50" />
-              <p>{t("no_accounts")}</p>
+            <div className="col-span-full text-center py-16 text-muted-foreground">
+              <Wallet className="h-10 w-10 mx-auto mb-3 opacity-40" />
+              <p className="font-medium text-foreground mb-1">{t("no_accounts")}</p>
             </div>
           )}
         </div>

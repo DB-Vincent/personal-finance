@@ -177,15 +177,16 @@ export function useDeleteTag() {
 export function useTransactions(filters: TransactionFilters = {}) {
   return useQuery({
     queryKey: ["transactions", filters],
-    queryFn: () => {
+    queryFn: async () => {
       const params = new URLSearchParams();
       for (const [k, v] of Object.entries(filters)) {
         if (v !== undefined && v !== "") params.set(k, String(v));
       }
       const qs = params.toString();
-      return apiClient<ListResponse<Transaction>>(
+      const res = await apiClient<ListResponse<Transaction>>(
         `/finance/transactions${qs ? `?${qs}` : ""}`
       );
+      return { ...res, items: res.items ?? [] };
     },
   });
 }

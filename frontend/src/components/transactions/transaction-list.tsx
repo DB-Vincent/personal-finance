@@ -22,9 +22,10 @@ export function TransactionList({
 
   if (transactions.length === 0) {
     return (
-      <p className="text-center py-8 text-muted-foreground">
-        {t("no_transactions")}
-      </p>
+      <div className="flex flex-col items-center py-12 text-muted-foreground">
+        <ArrowLeftRight className="h-8 w-8 mb-2 opacity-40" />
+        <p className="text-sm">{t("no_transactions")}</p>
+      </div>
     );
   }
 
@@ -45,7 +46,7 @@ export function TransactionList({
         return (
           <button
             key={tx.id}
-            className="flex items-center gap-3 py-3 px-2 w-full text-left hover:bg-muted/50 rounded transition-colors"
+            className="flex items-center gap-3 py-3 px-4 w-full text-left hover:bg-muted/50 transition-colors"
             onClick={() => onSelect?.(tx)}
             type="button"
           >
@@ -54,7 +55,7 @@ export function TransactionList({
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium truncate">
-                {tx.notes || tx.type}
+                {tx.notes || tx.type.charAt(0).toUpperCase() + tx.type.slice(1)}
               </p>
               <p className="text-xs text-muted-foreground">
                 {new Date(tx.date).toLocaleDateString()}

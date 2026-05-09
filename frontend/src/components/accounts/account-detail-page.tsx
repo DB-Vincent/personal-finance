@@ -9,6 +9,16 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TransactionList } from "@/components/transactions/transaction-list";
 
+const typeLabels: Record<string, string> = {
+  checking: "Checking",
+  savings: "Savings",
+  credit_card: "Credit Card",
+  cash: "Cash",
+  investment: "Investment",
+  loan: "Loan",
+  other: "Other",
+};
+
 export function AccountDetailPage() {
   const { accountId } = useParams({ from: "/_authenticated/accounts/$accountId" });
   const { t } = useTranslation();
@@ -46,7 +56,7 @@ export function AccountDetailPage() {
         </Link>
         <div>
           <h1 className="text-2xl font-bold">{account.name}</h1>
-          <Badge variant="secondary" className="mt-1">{account.type}</Badge>
+          <Badge variant="secondary" className="mt-1">{typeLabels[account.type] || account.type}</Badge>
         </div>
       </div>
 
@@ -70,10 +80,14 @@ export function AccountDetailPage() {
         {txLoading ? (
           <Skeleton className="h-48" />
         ) : (
-          <TransactionList
-            transactions={transactions?.items || []}
-            currencySymbol={currencySymbol}
-          />
+          <Card>
+            <CardContent className="p-0 py-1">
+              <TransactionList
+                transactions={transactions?.items || []}
+                currencySymbol={currencySymbol}
+              />
+            </CardContent>
+          </Card>
         )}
       </div>
     </div>
